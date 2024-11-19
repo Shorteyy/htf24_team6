@@ -17,4 +17,24 @@ view: discovery_facility {
     type: sum
     sql: ${planet.facility_id} ;;
   }
+
+  measure: habitable_count {
+    type: count_distinct
+    filters: [planet.habitable_dim: "yes"]
+    sql: ${TABLE}.facility_id ;;
+  }
+
+  measure: non_habitable_count {
+    type: count_distinct
+    filters: [planet.habitable_dim: "no"]
+    sql: ${TABLE}.facility_id ;;
+  }
+
+  measure: accuracy {
+    type: number
+    sql: CASE
+            WHEN ${count} > 0 THEN ${habitable_count} / ${planet.count}
+            ELSE NULL
+          END ;;
+  }
 }
