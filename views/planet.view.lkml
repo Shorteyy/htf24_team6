@@ -129,6 +129,11 @@ view: planet {
     filters: [habitable: "yes"]
   }
 
+  measure: non_habitable_count {
+    type: count
+    filters: [habitable: "no"]
+  }
+
   filter: habitable_mass {
     sql: ${planet_mass_earth} > 0.1 AND ${planet_mass_earth} < 10 ;;
   }

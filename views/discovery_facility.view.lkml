@@ -25,8 +25,9 @@ view: discovery_facility {
   }
 
   measure: non_habitable_count {
-    type: count
+    type: count_distinct
     filters: [planet.habitable_dim: "no"]
+    sql: ${TABLE}.facility_id  ;;
   }
 
   measure: accuracy {
