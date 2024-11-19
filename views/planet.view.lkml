@@ -129,6 +129,11 @@ view: planet {
     filters: [habitable: "yes"]
   }
 
+  measure: non_habitable_count {
+    type: count
+    filters: [habitable: "no"]
+  }
+
   filter: habitable_mass {
     sql: ${planet_mass_earth} > 0.1 AND ${planet_mass_earth} < 10 ;;
   }
@@ -191,6 +196,17 @@ view: planet {
     ${planet_density} > (1 * 0.85);;
   }
 
+
+
+dimension: dim_habitable {
+  type: yesno
+    sql:
+    ${planet_mass_earth} > 0.1 AND ${planet_mass_earth} < 10 AND
+    ${planet_radius_earth} > 0.5 AND ${planet_radius_earth} < 2.5 AND
+    ${equilibrium_temperature_k} > 175 AND ${equilibrium_temperature_k} < 274 AND
+    ${eccentricity} < 0.2 AND
+    ${planet_density} > 1;;
+}
 
 
 
