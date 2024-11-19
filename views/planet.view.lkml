@@ -163,6 +163,16 @@ view: planet {
   }
 
 
+  filter: habitable_with_slack {
+    sql:
+    ${planet_mass_earth} > (0.1 * 0.98) AND ${planet_mass_earth} < (10 * 1.02) AND
+    ${planet_radius_earth} > (0.5 * 0.98) AND ${planet_radius_earth} < (2.5 * 1.02) AND
+    ${equilibrium_temperature_k} > (175 * 0.98) AND ${equilibrium_temperature_k} < (274 * 1.02) AND
+    ${eccentricity} < 0.2 AND
+    ${planet_density} > (1 * 0.98);;
+  }
+
+
 
   measure: average_mass {
     type: average
