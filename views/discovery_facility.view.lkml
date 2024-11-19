@@ -7,6 +7,7 @@ view: discovery_facility {
   }
   dimension: facility_id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.facility_id ;;
   }
   measure: count {
