@@ -163,14 +163,34 @@ view: planet {
   }
 
 
-  filter: habitable_with_slack {
+  filter: habitable_with_slack_5 {
     sql:
-    ${planet_mass_earth} > (0.1 * 0.98) AND ${planet_mass_earth} < (10 * 1.02) AND
-    ${planet_radius_earth} > (0.5 * 0.98) AND ${planet_radius_earth} < (2.5 * 1.02) AND
-    ${equilibrium_temperature_k} > (175 * 0.98) AND ${equilibrium_temperature_k} < (274 * 1.02) AND
+    ${planet_mass_earth} > (0.1 * 0.95) AND ${planet_mass_earth} < (10 * 1.05) AND
+    ${planet_radius_earth} > (0.5 * 0.95) AND ${planet_radius_earth} < (2.5 * 1.05) AND
+    ${equilibrium_temperature_k} > (175 * 0.95) AND ${equilibrium_temperature_k} < (274 * 1.05) AND
     ${eccentricity} < 0.2 AND
-    ${planet_density} > (1 * 0.98);;
+    ${planet_density} > (1 * 0.95);;
   }
+
+  filter: habitable_with_slack_10 {
+    sql:
+    ${planet_mass_earth} > (0.1 * 0.90) AND ${planet_mass_earth} < (10 * 1.10) AND
+    ${planet_radius_earth} > (0.5 * 0.90) AND ${planet_radius_earth} < (2.5 * 1.10) AND
+    ${equilibrium_temperature_k} > (175 * 0.90) AND ${equilibrium_temperature_k} < (274 * 1.10) AND
+    ${eccentricity} < 0.2 AND
+    ${planet_density} > (1 * 0.95);;
+  }
+
+
+  filter: habitable_with_slack_15 {
+    sql:
+    ${planet_mass_earth} > (0.1 * 0.85) AND ${planet_mass_earth} < (10 * 1.15) AND
+    ${planet_radius_earth} > (0.5 * 0.85) AND ${planet_radius_earth} < (2.5 * 1.15) AND
+    ${equilibrium_temperature_k} > (175 * 0.85) AND ${equilibrium_temperature_k} < (274 * 1.15) AND
+    ${eccentricity} < 0.2 AND
+    ${planet_density} > (1 * 0.85);;
+  }
+
 
 
 
