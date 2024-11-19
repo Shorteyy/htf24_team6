@@ -115,4 +115,8 @@ view: planet {
     type: count
     drill_fields: [planet_id, planet_name]
   }
+  measure: average_mass {
+    type: average
+    sql: ${TABLE}.planet_mass_earth ;;
+  }
 }
