@@ -115,4 +115,23 @@ view: planet {
     type: count
     drill_fields: [planet_id, planet_name]
   }
+  measure: is_habitable  {
+    type: count
+    filters: [
+      planet_mass_earth: "> 0.1 AND < 10",
+      planet_radius_earth: "> 0.5 AND < 2.5",
+      equilibrium_temperature_k: "> 175 AND < 274",
+      eccentricity: "< 0.2",
+      planet_density: "> 1"
+      ]
+  }
+
+  filter: habitable_filter {
+    sql:
+    ${planet_mass_earth} > 0.1 AND ${planet_mass_earth} < 10 AND
+    ${planet_radius_earth} > 0.5 AND ${planet_radius_earth} < 2.5 AND
+    ${equilibrium_temperature_k} > 175 AND ${equilibrium_temperature_k} < 274 AND
+    ${eccentricity} < 0.2 AND
+    ${planet_density} > 1 ;;
+  }
 }
