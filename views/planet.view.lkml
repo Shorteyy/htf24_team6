@@ -115,9 +115,18 @@ view: planet {
     type: number
     sql:ROUND(${star.stellar_luminosity} / (4 * 3.141592 * POWER(${orbit_semi_major_axis_au}, 2)),2) ;;
   }
+  dimension: habitable_dim {
+    type: yesno
+    sql: ${habitable} ;;
+  }
   measure: count {
     type: count
     drill_fields: [planet_id, planet_name]
+  }
+
+  measure: habitable_count {
+    type: count
+    filters: [habitable: "yes"]
   }
 
   filter: habitable_mass {
@@ -144,14 +153,13 @@ view: planet {
     sql: ${stellar_flux} >0.7 AND ${stellar_flux} <1.3 ;;
   }
 
-  filter: all_habitable {
+  filter: habitable {
     sql:
     ${planet_mass_earth} > 0.1 AND ${planet_mass_earth} < 10 AND
     ${planet_radius_earth} > 0.5 AND ${planet_radius_earth} < 2.5 AND
     ${equilibrium_temperature_k} > 175 AND ${equilibrium_temperature_k} < 274 AND
     ${eccentricity} < 0.2 AND
-    ${planet_density} > 1 AND
-    ${stellar_flux} >0.7 AND ${stellar_flux} <1.3;;
+    ${planet_density} > 1;;
   }
 
   measure: average_mass {
