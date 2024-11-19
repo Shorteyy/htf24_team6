@@ -117,13 +117,7 @@ view: planet {
   }
   measure: is_habitable  {
     type: count
-    filters: [
-      planet_mass_earth: "> 0.1 AND < 10",
-      planet_radius_earth: "> 0.5 AND < 2.5",
-      equilibrium_temperature_k: "> 175 AND < 274",
-      eccentricity: "< 0.2",
-      planet_density: "> 1"
-      ]
+    filters: [habitable_filter: "yes"]
   }
 
   filter: habitable_filter {
