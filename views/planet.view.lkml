@@ -128,4 +128,9 @@ view: planet {
     ${eccentricity} < 0.2 AND
     ${planet_density} > 1 ;;
   }
+
+  measure: average_mass {
+    type: average
+    sql: ${TABLE}.planet_mass_earth ;;
+  }
 }
