@@ -11,6 +11,6 @@ explore: discovery_telescope {}
 
 explore: raw_planets {}
 
-explore: planet {}
+
 
 explore: star {}
