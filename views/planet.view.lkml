@@ -111,22 +111,47 @@ view: planet {
     type: number
     sql: ${TABLE}.v_johnson_magnitude ;;
   }
+  dimension: stellar_flux {
+    type: number
+    sql:ROUND(${star.stellar_luminosity} / (4 * 3.141592 * POWER(${orbit_semi_major_axis_au}, 2)),2) ;;
+  }
   measure: count {
     type: count
     drill_fields: [planet_id, planet_name]
   }
-  measure: is_habitable  {
-    type: count
-    filters: [habitable_filter: "yes"]
+
+  filter: habitable_mass {
+    sql: ${planet_mass_earth} > 0.1 AND ${planet_mass_earth} < 10 ;;
   }
 
-  filter: habitable_filter {
+  filter: habitable_radius {
+    sql:${planet_radius_earth} > 0.5 AND ${planet_radius_earth} < 2.5;;
+  }
+
+  filter: habitable_equilibrium {
+    sql: ${equilibrium_temperature_k} > 175 AND ${equilibrium_temperature_k} < 274 ;;
+  }
+
+  filter: habitable_eccentricity {
+    sql: ${eccentricity} < 0.2 ;;
+  }
+
+  filter: habitable_density {
+    sql: ${planet_density} > 1 ;;
+  }
+
+  filter: habitable_stellar_flux {
+    sql: ${stellar_flux} >0.7 AND ${stellar_flux} <1.3 ;;
+  }
+
+  filter: all_habitable {
     sql:
     ${planet_mass_earth} > 0.1 AND ${planet_mass_earth} < 10 AND
     ${planet_radius_earth} > 0.5 AND ${planet_radius_earth} < 2.5 AND
     ${equilibrium_temperature_k} > 175 AND ${equilibrium_temperature_k} < 274 AND
     ${eccentricity} < 0.2 AND
-    ${planet_density} > 1 ;;
+    ${planet_density} > 1 AND
+    ${stellar_flux} >0.7 AND ${stellar_flux} <1.3;;
   }
 
   measure: average_mass {
