@@ -24,6 +24,11 @@ view: discovery_facility {
     sql: ${TABLE}.facility_id ;;
   }
 
+  measure: count_planets {
+    type: count_distinct
+    sql: ${planet.planet_id} ;;
+  }
+
   measure: accuracy {
     type: number
     sql: CASE
