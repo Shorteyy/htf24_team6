@@ -12,4 +12,8 @@ view: discovery_facility {
   measure: count {
     type: count
   }
+  measure: succes_rate {
+    type: sum
+    sql: ${planet.facility_id} ;;
+  }
 }
